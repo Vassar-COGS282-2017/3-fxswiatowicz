@@ -1,11 +1,13 @@
-
 #Variation of the Schelling Model with a 3rd group added and max similarity variable.
-
+#In this version of the schelling model, I added a 3rd population, and a maximum similarity value
+#I expected an additional population to limit the amount of segregation a bit, along with the parameter
+# that forces members of a group to move if others are too similar to them. However, the results showed that
+#the population is around 50% segregated, which is above what would be considered random.
 # model parameters ####
 rows <- 50 
 cols <- 50
 proportion.group.1 <- .35 # proportion of red agents
-proportion.group.2 <- .35
+proportion.group.2 <- .3 # proportion of blue agents
 empty <- .3 # proportion of grid that will be empty space
 min.similarity <- 2/8 # minimum proportion of neighbors that are the same type to not move
 max.similarity <- 6/8 # maximum proportion of neighbors that are the same type to not move
@@ -32,7 +34,7 @@ create.grid <- function(rows, cols, proportion.group.1, proportion.group.2, empt
 # outputs a visualization of the grid, with red squares representing group 1,
 # blue squares group 2, and black squares empty locations.
 visualize.grid <- function(grid){
-  image(grid, col=c('black','red','blue', 'yellow'), xaxs=NULL, yaxs=NULL, xaxt='n', yaxt='n')
+  image(grid, col=c('black','red','blue', 'green'), xaxs=NULL, yaxs=NULL, xaxt='n', yaxt='n')
 }
 
 # empty.locations ####
