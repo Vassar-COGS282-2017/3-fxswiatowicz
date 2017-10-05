@@ -6,9 +6,9 @@
 # model parameters ####
 rows <- 50 
 cols <- 50
-proportion.group.1 <- .35 # proportion of red agents
-proportion.group.2 <- .3 # proportion of blue agents
-empty <- .3 # proportion of grid that will be empty space
+proportion.group.1 <- 1000/2300 # proportion of red agents
+proportion.group.2 <- 600/2300 # proportion of blue agents
+empty <- 200/2500 # proportion of grid that will be empty space
 min.similarity <- 2/8 # minimum proportion of neighbors that are the same type to not move
 max.similarity <- 6/8 # maximum proportion of neighbors that are the same type to not move
 # create.grid ####
@@ -18,14 +18,14 @@ max.similarity <- 6/8 # maximum proportion of neighbors that are the same type t
 # 1 and 2 represent the two different groups
 create.grid <- function(rows, cols, proportion.group.1, proportion.group.2, empty){
   pop.size.group.1 <- (rows*cols)*(1-empty)*proportion.group.1
-  pop.size.group.2 <- (rows*cols)*(1-empty)*(1-proportion.group.1)
+  pop.size.group.2 <- (rows*cols)*(1-empty)*proportion.group.2
   pop.size.group.3 <- (rows*cols)*(1-empty)*(1-proportion.group.1-proportion.group.2)
   
   initial.population <- sample(c(
     rep(1, pop.size.group.1), 
     rep(2, pop.size.group.2),
     rep(3, pop.size.group.3),
-    rep(0, (rows*cols)-pop.size.group.1-pop.size.group.2-pop.size.group.3)
+    rep(0, (rows*cols)-(pop.size.group.1+pop.size.group.2+pop.size.group.3))
   ))
   grid <- matrix(initial.population, nrow=rows, ncol=cols)
 }
